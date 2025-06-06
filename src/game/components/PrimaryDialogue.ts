@@ -122,7 +122,7 @@ export class PrimaryDialogue extends Phaser.GameObjects.Container {
         top: textBoxSpacing,
         bottom: textBoxSpacing,
       },
-      resolution: 6,
+      resolution: 3,
       wrap: {
         mode: "word",
         width: textBoxWidth - textBoxSpacing * 2,

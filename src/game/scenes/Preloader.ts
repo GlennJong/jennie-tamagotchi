@@ -27,6 +27,9 @@ export class Preloader extends Scene {
   preload() {
     this.load.setPath('assets');
     this.load.json('config', 'config.json');
+    this.load.font('BoutiqueBitmap', 'fonts/BoutiqueBitmap9x9.ttf', 'truetype');
+    this.load.font('Tiny5', 'fonts/Tiny5-Regular.ttf', 'truetype');
+    this.load.font('Cubic_11', 'fonts/Cubic_11.ttf', 'truetype');
     this.load.on('filecomplete-json-config', (_key: unknown, _type: unknown, data) => {
       const {
         battle_default_opponent,

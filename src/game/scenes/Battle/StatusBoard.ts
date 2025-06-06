@@ -8,11 +8,11 @@ const paddingY = 4;
 const hpFrameWidth = 60;
 const hpFrameHeight = 6;
 
-const textFontFamily = 'cubic-11';
-const textFontSize = 8;
+const textFontFamily = 'BoutiqueBitmap';
+const textFontSize = 10;
 const textFontResolution = 4;
 
-const playerNameY = 0;
+const playerNameY = -2;
 const barY = 10;
 
 export type TStatusBoardProps = {

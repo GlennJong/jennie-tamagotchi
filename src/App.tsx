@@ -20,6 +20,10 @@ function App() {
     });
     setIsGameStart(true);
   }
+
+  const handleClickManualBattle = (user: string, message: string) => {
+    EventBus.emit('message', {user, message});
+  }
   
   return (
     <div id="app">
@@ -33,6 +37,22 @@ function App() {
         }
         { isGameStart &&
           <PhaserGame ref={phaserRef} currentActiveScene={undefined} />
+        }
+        { isGameStart &&
+          <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
+              <button className="button" onClick={() => handleClickManualBattle('test', 'dead')}>HP=3</button>
+              <button className="button" onClick={() => handleClickManualBattle('test', 'live')}>HP=100</button>
+            </div>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center' }}>
+              <button className="button" onClick={() => handleClickManualBattle('test', '貝貝打招呼')}>battle 貝貝</button>
+              <button className="button" onClick={() => handleClickManualBattle('test', '上上打招呼')}>battle 上上</button>
+              <button className="button" onClick={() => handleClickManualBattle('bloloblolo', '貝貝打招呼')}>battle BBB</button>
+              <button className="button" onClick={() => handleClickManualBattle('touching0212', '貝貝打招呼')}>battle 踏青</button>
+              <button className="button" onClick={() => handleClickManualBattle('curry_cat', '貝貝打招呼')}>battle curry_cat</button>
+            </div>
+
+          </div>
         }
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { EventBus } from '../../EventBus';
 import Phaser, { Scene } from 'phaser';
-import { canvas, tamagotchi } from '../../constants';
+import { canvas } from '../../constants';
 import { PrimaryDialogue } from '../../components/PrimaryDialogue';
 import { Header } from './Header';
 import { TamagotchiCharacter } from './TamagotchiCharacter';
@@ -104,7 +104,7 @@ export default class Room extends Scene {
             await this.dialogue?.runDialog([
               { face: {
                   key: 'tamagotchi_character_afk',
-                  frame: 'face-normal'
+                  frame: 'face_sad'
                 },
                 text: '啊我死了... 要記得幫我補充能量...'
               }
@@ -182,11 +182,11 @@ export default class Room extends Scene {
         ) {
           let opponent;
           if (action === 'battle-shangshang') {
-            opponent = Math.random() > 0.5 ? 'shangshang' : 'default';
+            opponent = Math.random() > 0.25 ? 'shangshang' : 'default';
           } else if (action === 'battle-beibei') {
-            opponent = Math.random() > 0.5 ? 'beibei' : 'default';
+            opponent = Math.random() > 0.25 ? 'beibei' : 'default';
           } else if (action === 'battle') {
-            opponent = Math.random() > 0.5 ? 'jennie' : 'default';
+            opponent = Math.random() > 0.25 ? 'jennie' : 'default';
           }
 
           if (user === 'curry_cat') {
@@ -247,6 +247,20 @@ export default class Room extends Scene {
 
     if (action) {
       this.functionalActionQueue.push({ user, action });
+    }
+
+    if (message === 'dead') {
+      if (this.tamagotchi) {
+        console.log('work')
+        this.tamagotchi.status.hp = 3
+      }
+    }
+    else if (message === 'live') {
+      if (this.tamagotchi) {
+        console.log('work2')
+
+        this.tamagotchi.status.hp = 100
+      }
     }
   }
 
