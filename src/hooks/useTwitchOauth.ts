@@ -68,7 +68,7 @@ function useTwitchOauth() {
       if (isWsConnectedRef.current) {
         // channel.read.redemptions
         // channel.chat.message
-        if (data.metadata.subscription_type === "channel.read.redemptions") {
+        if (data.metadata.subscription_type === "channel.chat.message") {
           
           const newMsg = data.payload;
 

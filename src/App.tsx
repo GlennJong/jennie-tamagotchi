@@ -12,8 +12,8 @@ function App() {
     startWebsocket({
       onMessage: (data) => {
         const user = data.event.chatter_user_login;
-        // const message = data.event.message.text;
-        const message = data.event.reward.title;
+        const message = data.event.message.text;
+        // const message = data.event.reward.title;
         console.log({ user, message })
         EventBus.emit('message', {user, message});
       }
