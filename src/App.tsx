@@ -12,7 +12,6 @@ function App() {
     startWebsocket({
       onMessage: (data) => {
         const user = data.event.chatter_user_login;
-        // const message = data.event.message.text;
         const message = data.event.reward.title;
         console.log({ user, message })
         EventBus.emit('message', {user, message});
@@ -24,9 +23,11 @@ function App() {
   const handleClickManualBattle = (user: string, message: string) => {
     EventBus.emit('message', {user, message});
   }
+
   
   return (
     <div id="app">
+      
       <div style={{ zIndex: 1, position: "relative" }}>
         {
           !twitchState &&
@@ -50,10 +51,11 @@ function App() {
               <button className="button" onClick={() => handleClickManualBattle('bloloblolo', '貝貝打招呼')}>battle BBB</button>
               <button className="button" onClick={() => handleClickManualBattle('touching0212', '貝貝打招呼')}>battle 踏青</button>
               <button className="button" onClick={() => handleClickManualBattle('curry_cat', '貝貝打招呼')}>battle curry_cat</button>
+              { twitchState && JSON.stringify(twitchState) }
             </div>
-
           </div>
         }
+        
       </div>
     </div>
   );

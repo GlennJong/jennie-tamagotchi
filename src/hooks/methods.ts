@@ -62,7 +62,7 @@ export const subscribeMessageForWs = async (
 
   const header = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${user_token}`,
+    "Authorization": `Bearer ${user_token}`,
     "Client-Id": client_id,
   };
 
