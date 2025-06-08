@@ -15,6 +15,9 @@ export function openTwitchOauthLogin(client_id: string, redirect_uri: string) {
     "channel:bot",
     "channel:read:subscriptions",
     "channel:read:redemptions",
+    "channel:read:guest_star",
+    "channel:manage:guest_star",
+    "moderator:read:guest_star"
   ].join("+");
   const params = `response_type=token&force_verify=true&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
   window.location.href = `${TWITCH_OAUTH_URL}?${params}`;
