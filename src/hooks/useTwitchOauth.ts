@@ -66,7 +66,7 @@ function useTwitchOauth() {
       const data = JSON.parse(event.data);
 
       if (isWsConnectedRef.current) {
-        if (data.metadata.subscription_type === "channel.channel_points_automatic_reward_redemption.add") {
+        if (data.metadata.subscription_type === "channel.channel_points_custom_reward_redemption.add") {
           const newMsg = data.payload;
           onMessage && onMessage(newMsg);
           receivedMsgRef.current = [...receivedMsgRef.current, newMsg];

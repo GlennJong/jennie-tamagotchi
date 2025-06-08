@@ -54,8 +54,8 @@ export const subscribeMessageForWs = async (
 ) => {
   const url = TWITCH_EVENT_SUBSCRIBE_URL;
   const data = {
-    type: "channel.channel_points_automatic_reward_redemption.add",
-    version: "2",
+    type: "channel.channel_points_custom_reward_redemption.add",
+    version: "1",
     condition: { broadcaster_user_id: user_id, user_id: user_id },
     transport: { method: "websocket", session_id: ws_session_id },
   };
