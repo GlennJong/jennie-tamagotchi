@@ -14,10 +14,7 @@ export function openTwitchOauthLogin(client_id: string, redirect_uri: string) {
     "user:bot",
     "channel:bot",
     "channel:read:subscriptions",
-    "channel:read:redemptions",
-    "channel:read:guest_star",
-    "channel:manage:guest_star",
-    "moderator:read:guest_star"
+    "channel:read:redemptions"
   ].join("+");
   const params = `response_type=token&force_verify=true&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
   window.location.href = `${TWITCH_OAUTH_URL}?${params}`;
@@ -58,7 +55,7 @@ export const subscribeMessageForWs = async (
   const url = TWITCH_EVENT_SUBSCRIBE_URL;
   const data = {
     type: "channel.channel_points_automatic_reward_redemption.add",
-    version: "1",
+    version: "2",
     condition: { broadcaster_user_id: user_id, user_id: user_id },
     transport: { method: "websocket", session_id: ws_session_id },
   };
