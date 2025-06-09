@@ -8,12 +8,19 @@ function App() {
   const [ isGameStart, setIsGameStart ] = useState(false)
   const { twitchState, startOauthConnect, startWebsocket } = useTwitchOauth();
 
+  const [ temp, setTemp ] = useState([]);
+  const tempRef = useRef([]);
+
   const handleClickConnectButton = async () => {
     startWebsocket({
       onMessage: (data) => {
         const user = data.event.chatter_user_login;
         const message = data.event.reward.title;
         console.log({ user, message })
+
+        tempRef.current.push({ user, message });
+        setTemp(tempRef.current);
+        
         EventBus.emit('message', {user, message});
       }
     });
@@ -52,6 +59,11 @@ function App() {
               <button className="button" onClick={() => handleClickManualBattle('touching0212', '貝貝打招呼')}>battle 踏青</button>
               <button className="button" onClick={() => handleClickManualBattle('curry_cat', '貝貝打招呼')}>battle curry_cat</button>
               { twitchState && JSON.stringify(twitchState) }
+              { temp.map((_item, i) => 
+                <div key={i}>
+                  {_item.user}: {_item.message}
+                </div>
+              ) }
             </div>
           </div>
         }
