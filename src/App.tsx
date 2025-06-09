@@ -58,6 +58,8 @@ function App() {
               <button className="button" onClick={() => handleClickManualBattle('bloloblolo', '貝貝打招呼')}>battle BBB</button>
               <button className="button" onClick={() => handleClickManualBattle('touching0212', '貝貝打招呼')}>battle 踏青</button>
               <button className="button" onClick={() => handleClickManualBattle('curry_cat', '貝貝打招呼')}>battle curry_cat</button>
+            </div>
+            <div>
               { twitchState && JSON.stringify(twitchState) }
               { temp.map((_item, i) => 
                 <div key={i}>
