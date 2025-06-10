@@ -210,6 +210,7 @@ export default class Room extends Scene {
 
         // Finish action and remove from queue
         this.functionalActionQueue.splice(0, 1);
+        console.log('remove', this.functionalActionQueue)
         
       }
       this.isFunctionalRunning = false;
@@ -231,6 +232,7 @@ export default class Room extends Scene {
   }
 
   private handleCatchTwitchMessage = async ({ user, message } : { user: string, message: string }) => {
+    console.log('catch_room')
     let action;
     if (message === '上上打招呼') {
       action = 'battle-shangshang'

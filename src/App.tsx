@@ -8,18 +8,20 @@ function App() {
   const [ isGameStart, setIsGameStart ] = useState(false)
   const { twitchState, startOauthConnect, startWebsocket } = useTwitchOauth();
 
-  const [ temp, setTemp ] = useState([]);
-  const tempRef = useRef([]);
+  // const [ temp, setTemp ] = useState([]);
+  // const tempRef = useRef([]);
 
   const handleClickConnectButton = async () => {
     startWebsocket({
       onMessage: (data) => {
+        // const user = data.event.user_login;
+        // const message = data.event.reward.title;
         const user = data.event.chatter_user_login;
-        const message = data.event.reward.title;
-        console.log({ user, message })
+        const message = data.event.message.text;
+        // console.log({ user, message })
 
-        tempRef.current.push({ user, message });
-        setTemp(tempRef.current);
+        // tempRef.current.push({ user, message });
+        // setTemp(tempRef.current);
         
         EventBus.emit('message', {user, message});
       }
@@ -27,9 +29,9 @@ function App() {
     setIsGameStart(true);
   }
 
-  const handleClickManualBattle = (user: string, message: string) => {
-    EventBus.emit('message', {user, message});
-  }
+  // const handleClickManualBattle = (user: string, message: string) => {
+  //   EventBus.emit('message', {user, message});
+  // }
 
   
   return (
@@ -46,7 +48,7 @@ function App() {
         { isGameStart &&
           <PhaserGame ref={phaserRef} currentActiveScene={undefined} />
         }
-        { isGameStart &&
+        {/* { isGameStart &&
           <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
               <button className="button" onClick={() => handleClickManualBattle('test', 'dead')}>HP=3</button>
@@ -68,7 +70,7 @@ function App() {
               ) }
             </div>
           </div>
-        }
+        } */}
         
       </div>
     </div>

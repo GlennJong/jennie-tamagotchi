@@ -67,6 +67,7 @@ function useTwitchOauth() {
 
       if (isWsConnectedRef.current) {
         if (data.metadata.subscription_type === "channel.channel_points_custom_reward_redemption.add") {
+        // if (data.metadata.subscription_type === "channel.chat.message") {
           const newMsg = data.payload;
           onMessage && onMessage(newMsg);
           receivedMsgRef.current = [...receivedMsgRef.current, newMsg];
