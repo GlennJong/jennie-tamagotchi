@@ -35,6 +35,8 @@ export default class Room extends Scene {
 
   storage: any;
 
+  eventBus: any;
+
   private property: {
     coin: number,
     level: number,
@@ -56,7 +58,10 @@ export default class Room extends Scene {
     sceneStarter(this);
 
     // interact from outside
-    EventBus.on('message', this.handleCatchTwitchMessage);
+    if (!this.eventBus) {
+      this.eventBus = EventBus.on('message', this.handleCatchTwitchMessage);
+    }
+    // console.log(result)
   }
 
   private dialogue: PrimaryDialogue | undefined;
@@ -198,19 +203,19 @@ export default class Room extends Scene {
           }
 
           if (opponent) {
-            this.isFunctionalRunning = false;
-            sceneConverter(this, 'Battle', {
+            await sceneConverter(this, 'Battle', {
               opponent,
               queue: this.functionalActionQueue,
               tamagotchi: this.tamagotchi?.status,
               property: this.property
             });
+            this.isFunctionalRunning = false;
           }
         }
 
         // Finish action and remove from queue
         this.functionalActionQueue.splice(0, 1);
-        console.log('remove', this.functionalActionQueue)
+        // console.log('remove', this.functionalActionQueue)
         
       }
       this.isFunctionalRunning = false;
