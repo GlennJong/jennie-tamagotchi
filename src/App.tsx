@@ -14,10 +14,10 @@ function App() {
   const handleClickConnectButton = async () => {
     startWebsocket({
       onMessage: (data) => {
-        // const user = data.event.user_login;
-        // const message = data.event.reward.title;
-        const user = data.event.chatter_user_login;
-        const message = data.event.message.text;
+        const user = data.event.user_login;
+        const message = data.event.reward.title;
+        // const user = data.event.chatter_user_login;
+        // const message = data.event.message.text;
         // console.log({ user, message })
 
         // tempRef.current.push({ user, message });
